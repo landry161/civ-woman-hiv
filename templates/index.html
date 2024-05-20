@@ -11,11 +11,16 @@
 
     <!-- Custom fonts for this template-->
     <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/bootstrap-tagsinput.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body id="page-top">
@@ -153,7 +158,28 @@
 
             <!-- Main Content -->
             <div id="content">
-
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="input-group">
+                            <input style="border-style:groove" type="text" class="form-control bg-light border-0 small myCountries" id="countries"  name="countries" placeholder="Entrez le pays (Ghana, Côte d'Ivoire, Mali, Togo)..." />
+                        </div>
+                    </div>
+                     <div class="col-md-3">
+                                <div class="input-group">
+                                    <select class="form-control bg-light border-0 small">
+                                        {%  for year in years %}
+                                            <option value="year">{{year}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    &nbsp;
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" id="myBtn" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                </div>
+                            </div>
+                </div>
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -166,19 +192,19 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small" id="countries" placeholder="Entrez le pays..."
+                                    <input type="text" class="form-control bg-light border-0 small" id="countries_" name="countries_"  placeholder="Entrez le pays..."
                                             aria-label="Search" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <!--button class="btn btn-primary" type="button">
+                                        <!--div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
-                                            </button-->
-                                        </div>
+                                            </button>
+                                        </div-->
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <div class="input-group">
                                     <select class="form-control bg-light border-0 small">
                                         {%  for year in years %}
@@ -390,9 +416,7 @@
                                 </a>
                             </div>
                         </li>
-
                     </ul>
-
                 </nav>
                 <!-- End of Topbar -->
 
@@ -416,11 +440,11 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                               Pays</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{countArray}}</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            <i class="fas fa-globe-africa fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -434,11 +458,11 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                Enregistrements</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{records}}</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            <i class="fas fa-list fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -498,6 +522,80 @@
                     <div class="row">
 
                         <!-- Area Chart -->
+                        <!--div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myAreaChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div-->
+
+                        <!-- Pie Chart -->
+                        <!--div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2">
+                                        <canvas id="myPieChart"></canvas>
+                                    </div>
+                                    <div class="mt-4 text-center small">
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-primary"></i> Direct
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-success"></i> Social
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-info"></i> Referral
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div-->
+                    </div>
+
+
+                       <div class="row">
+
+                        <!-- Area Chart -->
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
@@ -522,7 +620,7 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
+                                        <canvas id="myAreaChart_"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -534,7 +632,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources__</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -773,6 +871,7 @@
 
     <!-- Bootstrap core JavaScript-->
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <!--script src="/static/vendor/jquery/jquery.min.js"></script-->
     <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -794,7 +893,7 @@
     <script src="/static/js/demo/chart-pie-demo.js"></script>
 
     <script type="text/JavaScript">
-        $( function() { 
+       /* $( function() { 
     var availableTags = [ 
         {% for c in countries %} 
             "{{c}}", 
@@ -803,7 +902,277 @@
     $("#countries").autocomplete({ 
       source: availableTags 
     }); 
-  } ); 
+  } ); */
+/*
+  $(function() {
+  var tagsList = [ "CSS", "JavaScript", "HTML", "HTML5", "jQuery", "AngularJS", "Express", "PHP", "Python", "Node.js", "MySQL", "MongoDB" ];
+
+var split = function(val){
+    return val.split(",");
+};
+
+var extractLast = function(term){
+    return split(term).pop();
+};
+
+$("#countries").on("keydown",function(event){
+    if (event.keyCode === $.ui.keyCode.TAB && $(this).autocomplete("instance").menu.active){
+        event.preventDefault();
+    }
+}).autocomplete({
+    source: function(request,response){
+        response($.ui.autocomplete.filter(
+            tagsList,extractLast(request.term)));
+    },
+    focus: function(){
+        return false;
+    },
+    select: function(event, ui) {
+        var terms = split(this.value);
+        terms.pop();
+        terms.push(ui.item.value);
+        terms.push("");
+        this.value = terms.join(",");
+        return false;
+    }
+});
+});*/
+    </script>
+
+    <script>
+
+        var myStringArray='{{countries}}';
+
+        var inputElm = document.querySelector('input[name=countries]'),
+        whitelist='{{countries|tojson()}}';
+        //whitelist=myArray;
+        whitelist=["Benin", "Burkina Faso", "Cote d'Ivoire", "Gambia", "Ghana", "Guinea", "Guinea-Bissau", "Liberia", "Mali", "Niger", "Nigeria", "Senegal", "Sierra Leone", "Togo"];
+    //whitelist = ["A# .NET", "A# (Axiom)", "A-0 System", "A+", "A++", "ABAP", "ABC", "ABC ALGOL", "ABSET", "ABSYS", "ACC", "Accent", "Ace DASL", "ACL2", "Avicsoft", "ACT-III", "Action!", "ActionScript", "Ada", "Adenine", "Agda", "Agilent VEE", "Agora", "AIMMS", "Alef", "ALF", "ALGOL 58", "ALGOL 60", "ALGOL 68", "ALGOL W", "Alice", "Alma-0", "AmbientTalk", "Amiga E", "AMOS", "AMPL", "Apex (Salesforce.com)", "APL", "AppleScript", "Arc", "ARexx", "Argus", "AspectJ", "Assembly language", "ATS", "Ateji PX", "AutoHotkey", "Autocoder", "AutoIt", "AutoLISP / Visual LISP", "Averest", "AWK", "Axum", "Active Server Pages", "ASP.NET", "B", "Babbage", "Bash", "BASIC", "bc", "BCPL", "BeanShell", "Batch (Windows/Dos)", "Bertrand", "BETA", "Bigwig", "Bistro", "BitC", "BLISS", "Blockly", "BlooP", "Blue", "Boo", "Boomerang", "Bourne shell (including bash and ksh)", "BREW", "BPEL", "B", "C--", "C++ – ISO/IEC 14882", "C# – ISO/IEC 23270", "C/AL", "Caché ObjectScript", "C Shell", "Caml", "Cayenne", "CDuce", "Cecil", "Cesil", "Céu", "Ceylon", "CFEngine", "CFML", "Cg", "Ch", "Chapel", "Charity", "Charm", "Chef", "CHILL", "CHIP-8", "chomski", "ChucK", "CICS", "Cilk", "Citrine (programming language)", "CL (IBM)", "Claire", "Clarion", "Clean", "Clipper", "CLIPS", "CLIST", "Clojure", "CLU", "CMS-2", "COBOL – ISO/IEC 1989", "CobolScript – COBOL Scripting language", "Cobra", "CODE", "CoffeeScript", "ColdFusion", "COMAL", "Combined Programming Language (CPL)", "COMIT", "Common Intermediate Language (CIL)", "Common Lisp (also known as CL)", "COMPASS", "Component Pascal", "Constraint Handling Rules (CHR)", "COMTRAN", "Converge", "Cool", "Coq", "Coral 66", "Corn", "CorVision", "COWSEL", "CPL", "CPL", "Cryptol", "csh", "Csound", "CSP", "CUDA", "Curl", "Curry", "Cybil", "Cyclone", "Cython", "Java", "Javascript", "M2001", "M4", "M#", "Machine code", "MAD (Michigan Algorithm Decoder)", "MAD/I", "Magik", "Magma", "make", "Maple", "MAPPER now part of BIS", "MARK-IV now VISION:BUILDER", "Mary", "MASM Microsoft Assembly x86", "MATH-MATIC", "Mathematica", "MATLAB", "Maxima (see also Macsyma)", "Max (Max Msp – Graphical Programming Environment)", "Maya (MEL)", "MDL", "Mercury", "Mesa", "Metafont", "Microcode", "MicroScript", "MIIS", "Milk (programming language)", "MIMIC", "Mirah", "Miranda", "MIVA Script", "ML", "Model 204", "Modelica", "Modula", "Modula-2", "Modula-3", "Mohol", "MOO", "Mortran", "Mouse", "MPD", "Mathcad", "MSIL – deprecated name for CIL", "MSL", "MUMPS", "Mystic Programming L"];
+
+    console.log("Voici");
+    var finalString=myStringArray.replace(/[]/g,"");
+    console.log(myStringArray);
+
+// initialize Tagify on the above input node reference
+var tagify = new Tagify(inputElm, {
+    enforceWhitelist: true,
+  
+    // make an array from the initial input value
+    whitelist: inputElm.value.trim().split(/\s*,\s*/) 
+})
+
+// Chainable event listeners
+tagify.on('add', onAddTag)
+      .on('remove', onRemoveTag)
+      .on('input', onInput)
+      .on('edit', onTagEdit)
+      .on('invalid', onInvalidTag)
+      .on('click', onTagClick)
+      .on('focus', onTagifyFocusBlur)
+      .on('blur', onTagifyFocusBlur)
+      .on('dropdown:hide dropdown:show', e => console.log(e.type))
+      .on('dropdown:select', onDropdownSelect)
+
+var mockAjax = (function mockAjax(){
+    var timeout;
+    return function(duration){
+        clearTimeout(timeout); // abort last request
+        return new Promise(function(resolve, reject){
+            timeout = setTimeout(resolve, duration || 700, whitelist)
+        })
+    }
+})()
+
+// tag added callback
+function onAddTag(e){
+    console.log("onAddTag: ", e.detail);
+    console.log("original input value: ", inputElm.value)
+    tagify.off('add', onAddTag) // exmaple of removing a custom Tagify event
+}
+
+// tag remvoed callback
+function onRemoveTag(e){
+    console.log("onRemoveTag:", e.detail, "tagify instance value:", tagify.value)
+}
+
+// on character(s) added/removed (user is typing/deleting)
+function onInput(e){
+    console.log("onInput: ", e.detail);
+    tagify.settings.whitelist.length = 0; // reset current whitelist
+    tagify.loading(true).dropdown.hide.call(tagify) // show the loader animation
+
+    // get new whitelist from a delayed mocked request (Promise)
+    mockAjax()
+        .then(function(result){
+            // replace tagify "whitelist" array values with new values
+            // and add back the ones already choses as Tags
+            tagify.settings.whitelist.push(...result, ...tagify.value)
+
+            // render the suggestions dropdown.
+            tagify.loading(false).dropdown.show.call(tagify, e.detail.value);
+        })
+}
+
+function onTagEdit(e){
+    console.log("onTagEdit: ", e.detail);
+}
+
+// invalid tag added callback
+function onInvalidTag(e){
+    console.log("onInvalidTag: ", e.detail);
+}
+
+// invalid tag added callback
+function onTagClick(e){
+    console.log(e.detail);
+    console.log("onTagClick: ", e.detail);
+}
+
+function onTagifyFocusBlur(e){
+    console.log(e.type, "event fired")
+}
+
+function onDropdownSelect(e){
+    console.log("onDropdownSelect: ", e.detail)
+}
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var btn=$("#myBtn");
+            var countries="";
+            var yearAr=Array();
+            var percentageAr=Array();
+
+            btn.click(function(e)
+            {
+                e.preventDefault();
+                var tagsValue=$.find("tag");
+                for (var i=0; i<tagsValue.length; i++)
+                {
+                    console.log("Voici "+tagsValue[i].innerText);
+                    countries+=tagsValue[i].innerText+",";
+                }
+
+                $.ajax({
+                    type:"POST",
+                    url:"/stathome",
+                    data:{tags:countries},
+                    dataType:"JSON",
+                    success:function(data){
+                        console.log(data);
+                        for(var i=0; i<data.length;i++){
+                            yearAr.push(data[i]["annee"]);
+                            percentageAr.push(data[i]["pourcentage"])
+                            loadByAJAX(yearAr,percentageAr);
+                        }
+                    },
+                    error:function(err){
+                        console.log(err);
+                    }
+                });
+                console.log(countries);
+                countries="";
+            });
+        });
+
+        function loadByAJAX(yearArray,percentage){
+
+        // Area Chart Example
+        console.log(yearArray);
+        console.log(percentage);
+var ctx = document.getElementById("myAreaChart_");
+var myLineChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels:yearArray,
+    datasets: [{
+      label: "Earnings",
+      lineTension: 0.3,
+      backgroundColor: "rgba(78, 115, 223, 0.05)",
+      borderColor: "rgba(78, 115, 223, 1)",
+      pointRadius: 3,
+      pointBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointBorderColor: "rgba(78, 115, 223, 1)",
+      pointHoverRadius: 3,
+      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+      pointHitRadius: 10,
+      pointBorderWidth: 2,
+      data:percentage,
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 10,
+        right: 25,
+        top: 25,
+        bottom: 0
+      }
+    },
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'date'
+        },
+        gridLines: {
+          display: false,
+          drawBorder: false
+        },
+        ticks: {
+          maxTicksLimit: 7
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          maxTicksLimit: 5,
+          padding: 10,
+          // Include a dollar sign in the ticks
+          callback: function(value, index, values) {
+            return '$' + number_format(value);
+          }
+        },
+        gridLines: {
+          color: "rgb(234, 236, 244)",
+          zeroLineColor: "rgb(234, 236, 244)",
+          drawBorder: false,
+          borderDash: [2],
+          zeroLineBorderDash: [2]
+        }
+      }],
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      titleMarginBottom: 10,
+      titleFontColor: '#6e707e',
+      titleFontSize: 14,
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      intersect: false,
+      mode: 'index',
+      caretPadding: 10,
+      callbacks: {
+        label: function(tooltipItem, chart) {
+          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+        }
+      }
+    }
+  }
+});
+        }
+    </script>
+
+    <script type="text/Javascript">
     </script>
 </body>
 
