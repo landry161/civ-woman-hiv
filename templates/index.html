@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Couverture femmes enceinte sous ARV - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -24,7 +24,6 @@
 </head>
 
 <body id="page-top">
-
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -32,11 +31,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url_for('home')}}">
+                <!--div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                </div-->
+                <div class="sidebar-brand-text mx-3">Femmes ARV CIV</div>
             </a>
 
             <!-- Divider -->
@@ -159,16 +158,17 @@
             <!-- Main Content -->
             <div id="content">
                 <div class="row">
-                    <div class="col-md-9">
-                        <div class="input-group" style="border-style: ridge;">
-                            <input style="border-style:groove" type="text" class="form-control bg-light border-0 small myCountries" id="countries"  name="countries" placeholder="Entrez le pays (Ghana, Côte d'Ivoire, Mali, Togo)..." />
+                    <form name="frm" class="form-inline mr-auto w-100 navbar-search">
+                        <div class="col-md-9">
+                            <div class="input-group" style="border-style: ridge;">
+                                <input style="border-style:groove" type="text" class="form-control bg-light border-0 small myCountries" id="countries"  name="countries" placeholder="Entrez le pays (Ghana, Côte d'Ivoire, Mali, Togo)..." />
+                            </div>
                         </div>
-                    </div>
-                     <div class="col-md-3">
+                        <div class="col-md-3">
                                 <div class="input-group">
-                                    <select class="form-control bg-light border-0 small">
+                                    <select name="year" class="form-control bg-light border-0 small">
                                         {%  for year in years %}
-                                            <option value="year">{{year}}</option>
+                                            <option name="year" value="year">{{year}}</option>
                                         {% endfor %}
                                     </select>
                                     &nbsp;
@@ -176,9 +176,11 @@
                                             <button class="btn btn-primary" id="myBtn" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
                                             </button>
+                                            
                                         </div>
                                 </div>
-                            </div>
+                        </div>
+                    </form>
                 </div>
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -191,16 +193,11 @@
                     <!-- Topbar Search -->
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="row">
+                        <!--div class="row">
                             <div class="col-md-7">
                                 <div class="input-group">
                                     <input type="text" class="form-control bg-light border-0 small" id="countries_" name="countries_"  placeholder="Entrez le pays..."
                                             aria-label="Search" aria-describedby="basic-addon2">
-                                        <!--div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div-->
                                 </div>
                             </div>
 
@@ -219,7 +216,7 @@
                                         </div>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                         <!--div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
@@ -241,15 +238,13 @@
                     </form>
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <!--ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
-                            <!-- Dropdown - Messages -->
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                 aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
@@ -267,15 +262,14 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
+
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                            <!-- Dropdown - Alerts -->
+                        
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
@@ -318,15 +312,12 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
-                            <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
@@ -386,7 +377,6 @@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -394,7 +384,7 @@
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
-                            <!-- Dropdown - User Information -->
+                            
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
@@ -416,7 +406,7 @@
                                 </a>
                             </div>
                         </li>
-                    </ul>
+                    </ul-->
                 </nav>
                 <!-- End of Topbar -->
 
@@ -552,7 +542,7 @@
                         </div-->
 
                         <!-- Pie Chart -->
-                        <!--div class="col-xl-4 col-lg-5">
+                        <div class="col-xl-12 col-lg-5">
                             <div class="card shadow mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -573,23 +563,21 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
+                                    <figure class="highcharts-figure">
+                                        <div id="container"></div>
+                                        <p class="highcharts-description">
+                                            This chart shows how symbols and shapes can be used in charts.
+                                            Highcharts includes several common symbol shapes, such as squares,
+                                            circles and triangles, but it is also possible to add your own
+                                            custom symbols. In this chart, custom weather symbols are used on
+                                            data points to highlight that certain temperatures are warm while
+                                            others are cold.
+                                        </p>
+                                    </figure>
+                                    
                                 </div>
                             </div>
-                        </div-->
+                        </div>
                     </div>
 
 
@@ -1041,7 +1029,7 @@ function onDropdownSelect(e){
         $(document).ready(function(){
             var btn=$("#myBtn");
             var countries="";
-            var yearAr=Array();
+            var pays=Array();
             var percentageAr=Array();
 
             btn.click(function(e)
@@ -1062,17 +1050,25 @@ function onDropdownSelect(e){
                     success:function(data){
                         console.log(data);
                         for(var i=0; i<data.length;i++){
-                            yearAr.push(data[i]["annee"]);
-                            percentageAr.push(data[i]["pourcentage"])
-                            loadByAJAX(yearAr,percentageAr);
+                            pays.push(data[i]["pays"]);
+                            percentageAr.push(data[i]["pourcentage"]);
                         }
+                        console.log("Avant envoie");
+                        console.log(percentageAr);
+                        console.log("Fin");
+                        //loadByAJAX(pays,percentageAr);
+                        secondFunction(pays,percentageAr);
+
+                        console.log(percentageAr);
+                        pays=[];
+                        percentageAr=[];
+                        countries="";
+                        console.log(countries);
                     },
                     error:function(err){
                         console.log(err);
                     }
                 });
-                console.log(countries);
-                countries="";
             });
         });
 
@@ -1081,13 +1077,13 @@ function onDropdownSelect(e){
         // Area Chart Example
         console.log(yearArray);
         console.log(percentage);
-var ctx = document.getElementById("myAreaChart_");
+var ctx = document.getElementById("myAreaChart_").getContext("2d");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
     labels:yearArray,
     datasets: [{
-      label: "Earnings",
+      label: "Femmes",
       lineTension: 0.3,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
       borderColor: "rgba(78, 115, 223, 1)",
@@ -1131,7 +1127,7 @@ var myLineChart = new Chart(ctx, {
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return number_format(value);
           }
         },
         gridLines: {
@@ -1169,10 +1165,82 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
+
+
+        }
+
+
+        function secondFunction(pays,percentage){
+            console.log("Pays");
+            console.log(pays);
+            console.log("Data");
+            console.log(percentage);
+            // Data retrieved https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature
+Highcharts.chart('container', {
+    chart: {
+        type: 'spline'
+    },
+    title: {
+        text: 'Monthly Average Temperature'
+    },
+    subtitle: {
+        text: 'Source: ' +
+            '<a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature" ' +
+            'target="_blank">Wikipedia.com</a>'
+    },
+    xAxis: {
+        /*categories: [
+            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+        ]*/
+        categories:pays,
+        accessibility: {
+            description: 'Months of the year'
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'Temperature'
+        },
+        labels: {
+            format: '{value}'
+        }
+    },
+    tooltip: {
+        crosshairs: true,
+        shared: true,
+        pointFormat: 'Femmes : <b>{point.y}</b><br/>'
+    },
+    legend: {
+            enabled: true,
+            tile:"ok"
+        },
+    plotOptions: {
+        spline: {
+            marker: {
+                radius: 4,
+                lineColor: '#666666',
+                lineWidth: 1
+            }
+        }
+    },
+    series: [{
+        /*data: [5.2, 5.7, 8.7, 13.9, 18.2, 21.4, 25.0, 22.8, 17.5, 12.1, 7.6]*/
+        data:percentage,
+        name:"Nombre de Femmes"
+    }]
+});
+
         }
     </script>
 
-    <script type="text/Javascript">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script type="text/javascript">
+        
     </script>
 </body>
 

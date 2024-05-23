@@ -21,6 +21,15 @@ def home():
 	records=countRecords()
 	return render_template("index.html",years=years,records=records,countArray=len(country),countries=country)
 
+@app.route("/charts",methods=["POST"])
+def loadChartsWithData():
+	tags=request.form.get("tags")
+	year=request.form.get("year")
+	print(year)
+	print(tags)
+	pdb.set_trace()
+	return render_template("charts.html")
+
 @app.route("/stathome",methods=["POST"])
 def getStatHomeByYear():
 	countries = request.form.get("tags")
@@ -61,7 +70,7 @@ def getQueryByTags(tagsValue):
 			results=cursorDB.fetchall()
 
 			for val in results:
-				finalStat.append({"annee":val[0],"pourcentage":int(val[1])})
+				finalStat.append({"pays":val[0],"pourcentage":int(val[1])})
 	'''
 	mySQL="""SELECT pays, sum(pourcentage) as total FROM civ WHERE pays=%s group by pays;"""
 	value=(tagsValue,)
