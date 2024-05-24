@@ -166,9 +166,9 @@
                         </div>
                         <div class="col-md-3">
                                 <div class="input-group">
-                                    <select name="year" class="form-control bg-light border-0 small">
+                                    <select id="year" class="form-control bg-light border-0 small year">
                                         {%  for year in years %}
-                                            <option name="year" value="year">{{year}}</option>
+                                            <option value="{{year}}">{{year}}</option>
                                         {% endfor %}
                                     </select>
                                     &nbsp;
@@ -424,7 +424,7 @@
                     <div class="row">
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-6 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -442,7 +442,7 @@
                         </div>
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-6 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -460,7 +460,7 @@
                         </div>
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <!--div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -486,10 +486,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
 
                         <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <!--div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -504,7 +504,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                     </div>
 
                     <!-- Content Row -->
@@ -546,7 +546,7 @@
                             <div class="card shadow mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Source</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -565,24 +565,41 @@
                                 <div class="card-body">
                                     <figure class="highcharts-figure">
                                         <div id="container"></div>
-                                        <p class="highcharts-description">
-                                            This chart shows how symbols and shapes can be used in charts.
-                                            Highcharts includes several common symbol shapes, such as squares,
-                                            circles and triangles, but it is also possible to add your own
-                                            custom symbols. In this chart, custom weather symbols are used on
-                                            data points to highlight that certain temperatures are warm while
-                                            others are cold.
-                                        </p>
                                     </figure>
-                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Pie Chart</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <figure class="highcharts-figure">
+                                        <div id="containerPieChart"></div>
+                                    </figure>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-
                        <div class="row">
-
                         <!-- Area Chart -->
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
@@ -1002,32 +1019,33 @@ function onInput(e){
 }
 
 function onTagEdit(e){
-    console.log("onTagEdit: ", e.detail);
+    //console.log("onTagEdit: ", e.detail);
 }
 
 // invalid tag added callback
 function onInvalidTag(e){
-    console.log("onInvalidTag: ", e.detail);
+    //console.log("onInvalidTag: ", e.detail);
 }
 
 // invalid tag added callback
 function onTagClick(e){
-    console.log(e.detail);
-    console.log("onTagClick: ", e.detail);
+    //console.log(e.detail);
+    //console.log("onTagClick: ", e.detail);
 }
 
 function onTagifyFocusBlur(e){
-    console.log(e.type, "event fired")
+    //console.log(e.type, "event fired")
 }
 
 function onDropdownSelect(e){
-    console.log("onDropdownSelect: ", e.detail)
+    //console.log("onDropdownSelect: ", e.detail)
 }
     </script>
 
     <script type="text/javascript">
         $(document).ready(function(){
             var btn=$("#myBtn");
+            var select=$("#year");
             var countries="";
             var pays=Array();
             var percentageAr=Array();
@@ -1036,6 +1054,7 @@ function onDropdownSelect(e){
             {
                 e.preventDefault();
                 var tagsValue=$.find("tag");
+                var select=$("#year").find(":selected").val();
                 for (var i=0; i<tagsValue.length; i++)
                 {
                     console.log("Voici "+tagsValue[i].innerText);
@@ -1045,25 +1064,22 @@ function onDropdownSelect(e){
                 $.ajax({
                     type:"POST",
                     url:"/stathome",
-                    data:{tags:countries},
+                    data:{tags:countries,year:select},
                     dataType:"JSON",
                     success:function(data){
                         console.log(data);
-                        for(var i=0; i<data.length;i++){
-                            pays.push(data[i]["pays"]);
-                            percentageAr.push(data[i]["pourcentage"]);
+                        console.log(data[0]["res"]);
+                        var myData=data[0]["res"];
+                        loadPieChart(data[0]["query"],select);
+                        for(var i=0; i<myData.length;i++){
+                            pays.push(myData[i]["pays"]);
+                            percentageAr.push(myData[i]["pourcentage"]);
                         }
-                        console.log("Avant envoie");
-                        console.log(percentageAr);
-                        console.log("Fin");
                         //loadByAJAX(pays,percentageAr);
                         secondFunction(pays,percentageAr);
-
-                        console.log(percentageAr);
                         pays=[];
                         percentageAr=[];
                         countries="";
-                        console.log(countries);
                     },
                     error:function(err){
                         console.log(err);
@@ -1072,15 +1088,15 @@ function onDropdownSelect(e){
             });
         });
 
-        function loadByAJAX(yearArray,percentage){
-
+    function loadByAJAX(yearArray,percentage)
+    {
         // Area Chart Example
         console.log(yearArray);
         console.log(percentage);
-var ctx = document.getElementById("myAreaChart_").getContext("2d");
-var myLineChart = new Chart(ctx, {
-  type: 'line',
-  data: {
+        var ctx = document.getElementById("myAreaChart_").getContext("2d");
+        var myLineChart = new Chart(ctx, {
+        type: 'line',
+    data: {
     labels:yearArray,
     datasets: [{
       label: "Femmes",
@@ -1165,34 +1181,22 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
+}
 
-
-        }
-
-
-        function secondFunction(pays,percentage){
-            console.log("Pays");
-            console.log(pays);
-            console.log("Data");
-            console.log(percentage);
-            // Data retrieved https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature
-Highcharts.chart('container', {
+    function secondFunction(pays,percentage){
+Highcharts.chart('container',{
     chart: {
         type: 'spline'
     },
     title: {
-        text: 'Monthly Average Temperature'
+        text: 'Proportion de femmes bénéficiant des ARV '
     },
     subtitle: {
         text: 'Source: ' +
-            '<a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature" ' +
-            'target="_blank">Wikipedia.com</a>'
+            '<a href="https://data.gouv.ci/datasets/couverture-des-femmes-enceintes-sous-traitement-anti-retroviraux" ' +
+            'target="_blank">Open Data Côte d\'Ivoire de 2000 à 2020</a>'
     },
     xAxis: {
-        /*categories: [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-        ]*/
         categories:pays,
         accessibility: {
             description: 'Months of the year'
@@ -1200,7 +1204,7 @@ Highcharts.chart('container', {
     },
     yAxis: {
         title: {
-            text: 'Temperature'
+            text: 'Nombre de femmes'
         },
         labels: {
             format: '{value}'
@@ -1225,13 +1229,12 @@ Highcharts.chart('container', {
         }
     },
     series: [{
-        /*data: [5.2, 5.7, 8.7, 13.9, 18.2, 21.4, 25.0, 22.8, 17.5, 12.1, 7.6]*/
         data:percentage,
-        name:"Nombre de Femmes"
+        name:"Femmes"
     }]
 });
-
         }
+        
     </script>
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -1239,8 +1242,146 @@ Highcharts.chart('container', {
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
     <script type="text/javascript">
-        
+        function loadPieChart(arrayValue,year){
+            (function (H) {
+    H.seriesTypes.pie.prototype.animate = function (init) {
+        const series = this,
+            chart = series.chart,
+            points = series.points,
+            {
+                animation
+            } = series.options,
+            {
+                startAngleRad
+            } = series;
+
+        function fanAnimate(point, startAngleRad) {
+            const graphic = point.graphic,
+                args = point.shapeArgs;
+
+            if (graphic && args) {
+
+                graphic
+                    // Set inital animation values
+                    .attr({
+                        start: startAngleRad,
+                        end: startAngleRad,
+                        opacity: 1
+                    })
+                    // Animate to the final position
+                    .animate({
+                        start: args.start,
+                        end: args.end
+                    }, {
+                        duration: animation.duration / points.length
+                    }, function () {
+                        // On complete, start animating the next point
+                        if (points[point.index + 1]) {
+                            fanAnimate(points[point.index + 1], args.end);
+                        }
+                        // On the last point, fade in the data labels, then
+                        // apply the inner size
+                        if (point.index === series.points.length - 1) {
+                            series.dataLabelsGroup.animate({
+                                opacity: 1
+                            },
+                            void 0,
+                            function (){
+                                points.forEach(point => {
+                                    point.opacity = 1;
+                                });
+                                series.update({
+                                    enableMouseTracking: true
+                                },false);
+                                chart.update({
+                                    plotOptions: {
+                                        pie: {
+                                            innerSize: '40%',
+                                            borderRadius: 8
+                                        }
+                                    }
+                                });
+                            });
+                        }
+                    });
+            }
+        }
+
+        if (init) {
+            // Hide points on init
+            points.forEach(point => {
+                point.opacity = 0;
+            });
+        } else {
+            fanAnimate(points[0], startAngleRad);
+        }
+    };
+}(Highcharts));
+
+Highcharts.chart('containerPieChart', {
+    chart: {
+        type: 'pie'
+    },
+    title: {
+        text: 'Repartition annuel du nombre de femmes',
+        align: 'left'
+    },
+    subtitle: {
+        text: 'Année '+year,
+        align: 'left'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            borderWidth: 2,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b><br>{point.y}',
+                distance: 20
+            }
+        }
+    },
+    series: [{
+        // Disable mouse tracking on load, enable after custom animation
+        enableMouseTracking: false,
+        animation: {
+            duration: 2000
+        },
+        colorByPoint: true,
+        name:"Pourcentage",
+        text:"ii",
+        data:arrayValue
+        /*data: [{
+            name: 'Customer Support',
+            y: 21.3
+        }, {
+            name: 'Development',
+            y: 18.7
+        }, {
+            name: 'Sales',
+            y: 20.2
+        }, {
+            name: 'Marketing',
+            y: 14.2
+        }, {
+            name: 'Other',
+            y: 25.6
+        }]*/
+    }]
+});
+   
+        }
     </script>
 </body>
 

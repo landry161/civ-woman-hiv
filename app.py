@@ -14,7 +14,6 @@ mydb = mysql.connector.connect(host="localhost",user="root",password="",database
 
 @app.route("/")
 def home():
-	#return "<h1>Bienvenue sur notre page chers ami.es</h1>"
 	#loadAndInsertIntoDB()
 	years=getDistinctYear()
 	country=getDistinctCountry()
@@ -33,10 +32,16 @@ def loadChartsWithData():
 @app.route("/stathome",methods=["POST"])
 def getStatHomeByYear():
 	countries = request.form.get("tags")
-	
+	year= request.form.get("year")
+	ok=[]
+	print(countries)
+	print(year)
 	res=getQueryByTags(countries)
+	queryPieChart=pieChartByYear(year)
+	ok.append({"query":queryPieChart,"res":res})
 	#pdb.set_trace()
-	return res
+
+	return ok
 	'''
 	for r in res:
 		print("---Non---")
@@ -56,6 +61,21 @@ def getStatHomeByYear():
 		finalStat.append({"year":val[0],"pourcentage":val[1]})
 	return finalStat
 	'''
+
+#Diagramme circulaire par An
+def pieChartByYear(year):
+	cursorDB=mydb.cursor()
+	pieChartByYearHome=[]
+	mySQL="""SELECT pays, sum(pourcentage) as total FROM civ WHERE annee=%s group by pays;"""
+	value=(year,)
+	cursorDB.execute(mySQL,value)
+	res=cursorDB.fetchall()
+
+	for j in res:
+		print(j)
+		pieChartByYearHome.append({"name":j[0],"y":int(j[1])})
+
+	return pieChartByYearHome
 
 #Méthode pour la récupération selon les tags
 def getQueryByTags(tagsValue):
