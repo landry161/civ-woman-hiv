@@ -1,11 +1,9 @@
 from flask import Flask, flash, render_template,request,redirect,url_for,make_response
 import csv
-import mysql.connector
 import json
 import pandas as pd
 import pdb
 import numpy as np
-from decimal import *
 from db import *
 
 #flask --app app.py --debug run
