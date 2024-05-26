@@ -21,12 +21,11 @@ def loadPieChart():
 	cursorDB.close()
 	for j in res:
 		pieChartYear.append({"name":j[0],"y":int(j[1])})
-	#pdb.set_trace()
 	return pieChartYear
 
 def loadLineChart():
 	cursorDB=connexion.cursor()
-	arrayCountry=["Benin", "Burkina Faso", "Cote d'Ivoire", "Gambia", "Ghana", "Guinea", "Guinea-Bissau", "Liberia", "Mali", "Niger", "Nigeria", "Senegal", "Sierra Leone", "Togo"]
+	arrayCountry=["Benin", "Burkina Faso","Cote d'Ivoire", "Gambia", "Ghana", "Guinea", "Guinea-Bissau", "Liberia", "Mali", "Niger", "Nigeria", "Senegal", "Sierra Leone", "Togo"]
 	arraySeries=[]
 	data=[]
 	countrySQL="""SELECT id,pays,annee,pourcentage FROM civ ORDER BY annee ASC;"""
@@ -52,5 +51,3 @@ def getDistinctCountry():
 	for y in results:
 		finalCountry.append(y[0])
 	return finalCountry
-
-#loadPieChart()

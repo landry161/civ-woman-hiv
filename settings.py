@@ -2,7 +2,9 @@ import csv
 import psycopg2
 import pandas as pd
 import requests
+import pdb
 import os.path
+from psycopg2 import OperationalError, errorcodes, errors
 
 connexion = psycopg2.connect("dbname=afwoman user=postgres host=localhost password=5432")
 
@@ -16,36 +18,44 @@ def checkIfFileExists(fileName):
         renameCSVDowloaded()
         createTable()
         insertPDIntoDB()
+        runServerFunction()
     else:
-        #insertion dans la base de données
-        print("Insert into DataBase")
+        #Fichier exixte, donc démarrage du serveur
+        print(" Démarrage du serveur ")
+        runServerFunction()
 
 def renameCSVDowloaded():
     myDataFrame=pd.read_csv("cover.csv",delimiter=",",encoding="ISO-8859-1")
     myDataFrame=myDataFrame.rename(columns={myDataFrame.columns[0]: 'pays',myDataFrame.columns[1]: "annee",myDataFrame.columns[2]: "pourcentage"})
     myDataFrame.to_csv("cover.csv",index=False)
-    
-    print("Fichier CSV mis à jour avec succès")
+    print(" Fichier CSV mis à jour avec succès ")
 
 #Méthode de création des tables
 def createTable():
-    print("Création de la table")
-    cursor = connexion.cursor()
-    query="""CREATE TABLE civ(id serial PRIMARY KEY,pays VARCHAR(30),annee INT,pourcentage INT)"""
-    cursor.execute(query)
-    connexion.commit()
+    try:
+        cursor = connexion.cursor()
+        query="""CREATE TABLE civ(id serial PRIMARY KEY,pays VARCHAR(30),annee INT,pourcentage INT)"""
+        cursor.execute(query)
+        connexion.commit()
+        print("Table créée avec succès")
+    except (psycopg2.DatabaseError, Exception) as error:
+        print(error)
+        print(" Impossible de créer cette table. Cette base de données existe probalement déjà")
     cursor.close()
-    print("Table créée avec succès")
 
+#Insertion
 def insertPDIntoDB():
-    print("ON insère le dataFrame dans la base de données")
+    print("Chargement dans la base ...")
     cursor = connexion.cursor()
     dataFrame=pd.read_csv("cover.csv")
-    myQuery = f"""insert into civ(pays,annee,pourcentage) VALUES(%s,%s,%s)"""
+    myQuery=f"""insert into civ(pays,annee,pourcentage) VALUES(%s,%s,%s)"""
     cursor.executemany(myQuery,dataFrame.values)
     connexion.commit()
-    print("Terminé")
+    cursor.close()
 
+#Méthode de démarrage de notre application Flask
+def runServerFunction():
+    os.system("flask --app app.py run --debug")
 
 #Télchargement du fichier
 def downloadFile():
@@ -56,4 +66,5 @@ def downloadFile():
     file.write(myUrl.content.decode("utf-8"))
     print("Fichier téléchargé avec succès")
 
+#Démarrage
 checkIfFileExists("couverture-des-femmes-enceintes-sous-traitement-anti-retroviraux_pays_CEDEAO.csv")
